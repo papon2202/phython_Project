@@ -1,0 +1,47 @@
+from tkinter import *
+from PIL import Image,ImageTk
+from tkinter import messagebox
+root = Tk()
+class Login:
+    def __init__(self,root):
+        self.root = root
+        self.root.title("Login System")
+        self.root.geometry("1200x650+20+5")
+        self.root.resizable(False,False)
+
+        #Photo Image
+        self.bgg = ImageTk.PhotoImage(file='5.jpg')
+        self.label = Label(image =self.bgg).place(x=0,y=0,relheight=1,relwidth=1)
+
+        #Login Frame
+        Frame_login= Frame(self.root,bg = "white")
+        Frame_login.place(x=100,y=250,height=260,width=320)
+
+        title = Label(Frame_login,text = "Login Here", font=("cambria",35,"bold"),fg="red").place(x=40,y=5)
+        desc = Label(Frame_login, text="Eomployee Login Area", font=("Comic Sans MS", 10), fg="red").place(x=40, y=65)
+
+        user = Label(Frame_login, text="Username", font=("Lucida Sans Unicode", 15), fg="black").place(x=40, y=100)
+        self.user_entry = Entry(Frame_login,font =("Lucida Sans Unicode", 12), fg="black",bg= "gray")
+        self.user_entry.place(x=40, y= 130)
+
+        password = Label(Frame_login, text="Passrord", font=("Lucida Sans Unicode", 15), fg="black").place(x=40, y=155)
+        self.password_entry = Entry(Frame_login, font=("Lucida Sans Unicode", 12), fg="black",bg= "gray")
+        self.password_entry.place(x=40, y=185)
+
+        forget= Button(Frame_login,text = "Forget Password?", bd=0,font = ("cambria", 10),fg= "red").place(x=40, y=210)
+        login_btn = Button(self.root,command = self.log_in ,text = "Login", font = ("times New Roman", 20),bg="red",fg= "white").place(x=200, y=490,width=100, height=40)
+
+
+    def log_in(self):
+        if self.user_entry.get()=="" or self.password_entry.get()=="":
+            messagebox.showerror("Error!", "All Fields are required", parent= self.root)
+        elif self.user_entry.get()!="papon" or self.password_entry.get()!="123456":
+            messagebox.showerror("Error!", "Invalid username or password", parent= self.root)
+        else:
+            messagebox.showinfo("WELCOME", f"Welcome {self.user_entry.get()}\n your password is {self.password_entry.get()}", parent=self.root)
+
+
+
+obj = Login(root)
+
+root.mainloop()
